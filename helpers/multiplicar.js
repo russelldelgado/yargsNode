@@ -1,25 +1,34 @@
 const fs = require('fs');
+const colors = require('colors');
 
-const crearArchivo = async ( base = 5 , listar = false)  => {
+colors.setTheme({
+    silly: 'rainbow',
+    input: 'grey',
+    verbose: 'cyan',
+    prompt: 'grey',
+    info: 'green',
+    data: 'grey',
+    help: 'cyan',
+    warn: 'yellow',
+    debug: 'blue',
+    error: 'red'
+  });
 
+const crearArchivo = async ( base = 5 , listar = false , hasta = 10)  => {
     try {
-
-
-        
-
         let salida = '';
-        for (let index = 0; index <= 10; index++) {
-                salida +=   ` ${base} * ${index}  = ${base * index}\n`;
+        for (let index = 0; index <= hasta; index++) {
+                salida +=   ` ${ base } * ${ index }  = ${ base * index}\n`;
         }
         if(listar){
             console.log('=======================================')
-            console.log(`TABLA DE MULTIPLICAR : ${ base }`)
+            console.log(`TABLA DE MULTIPLICAR : ${ base }`.trap.debug)
             console.log('=======================================')
-            console.log(salida);
+            console.log(salida.rainbow);
 
         }
         
-        fs.writeFileSync(`tabla-${base}.txt` , salida );
+        fs.writeFileSync(`./salida/tabla-${base}.txt` , salida );
 
         
         
